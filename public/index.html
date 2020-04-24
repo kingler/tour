@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coop Far East Ltd.</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <style>
+        #panorama {
+            width: 100%;
+            height: 600px;
+        }
+        .nana {
+            background-color: aquamarine;
+            width: 50%;
+        }
+        #controls {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 3px;
+    }
+    .ctrl {
+        padding: 8px 5px;
+        width: 30px;
+        text-align: center;
+        background: rgba(200, 200, 200, 0.8);
+        display: inline-block;
+        cursor: pointer;
+    }
+    .ctrl:hover {
+        background: rgba(200, 200, 200, 1);
+    }
+    .x {
+        min-height: 100vh;
+    }        
+    </style>
+</head>
+
+<body>
+
+
+<div class="x" id="panorama">
+    <div id="controls">
+        <div class="ctrl" id="pan-up">&#9650;</div>
+        <div class="ctrl" id="pan-down">&#9660;</div>
+        <div class="ctrl" id="pan-left">&#9664;</div>
+        <div class="ctrl" id="pan-right">&#9654;</div>
+        <div class="ctrl" id="zoom-in">&plus;</div>
+        <div class="ctrl" id="zoom-out">&minus;</div>
+        <!-- <div class="ctrl" id="fullscreen">&#x2922;</div> -->
+    </div>
+</div>
+
+
+    <script>
+
+        document.getElementById('pan-up').addEventListener('click', function(e) {
+            viewer.setPitch(viewer.getPitch() + 50);
+        });
+        document.getElementById('pan-down').addEventListener('click', function(e) {
+            viewer.setPitch(viewer.getPitch() - 50);
+        });
+        document.getElementById('pan-left').addEventListener('click', function(e) {
+            viewer.setYaw(viewer.getYaw() - 50);
+        });
+        document.getElementById('pan-right').addEventListener('click', function(e) {
+            viewer.setYaw(viewer.getYaw() + 50);
+        });
+        document.getElementById('zoom-in').addEventListener('click', function(e) {
+            viewer.setHfov(viewer.getHfov() - 50);
+        });
+        document.getElementById('zoom-out').addEventListener('click', function(e) {
+            viewer.setHfov(viewer.getHfov() + 50);
+        });
+
+        function nodo() {
+            Swal.fire({
+                title: 'Sweet!',
+                text: 'Modal with a custom image.',
+                imageUrl: 'https://unsplash.it/400/200',
+                imageWidth: "100%",
+                imageHeight: "100%",
+                imageAlt: 'Custom image',
+                confirmButtonText: "cerrar",
+                customClass: "nana"
+            })
+        }
+
+        viewer = pannellum.viewer('panorama', {
+            "default": {
+                "firstScene": "entrada",
+                "author": "Alamy",
+                "sceneFadeDuration": 1000,
+                "showControls": false
+            },
+
+            "scenes": {
+                "entrada": {
+                    "autoLoad": true,
+                    "title": "Entrada",
+                    "hfov": 500,
+                    "pitch": 1.6473814187756146,
+                    "yaw": 1.8343954817635746,
+                    "type": "equirectangular",
+                    "panorama": "/images/entrada.jpg",
+                    "autoRotate": -10,
+                    "hotSpotDebug": false,
+                    "hotSpots": [
+                        {
+                            "pitch": -5,
+                            "yaw": -70,
+                            "type": "scene",
+                            "text": "Oficina 1",
+                            "sceneId": "of1"
+                        },
+                        {
+                            "pitch": -5,
+                            "yaw": 70,
+                            "type": "scene",
+                            "text": "Oficina 2",
+                            "sceneId": "of2"
+                        },
+                        {
+                            "hfov": 110,
+                            "pitch": 10.371935422677701,
+                            "yaw": 177.39670728611372,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        }                                               
+                    ]
+                },
+
+                "of1": {
+                    "autoLoad": true,
+                    "title": "Oficina 1",
+                    "hfov": 900,
+                    "pitch": 10,
+                    "yaw": 90,
+                    "type": "equirectangular",
+                    "panorama": "/images/of1.jpg",
+                    "autoRotate": -10,
+                    "hotSpotDebug": false,
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 90,
+                            "type": "scene",
+                            "text": "Entrada",
+                            "sceneId": "entrada"
+                        },
+                        {
+                            "hfov": 110,
+                            "pitch": 4.829042691552391,
+                            "yaw": -143.46120255227498,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        },
+                        {
+                            "hfov": 110,
+                            "pitch": 12.888179936636135,
+                            "yaw": 30.27269057993482,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        },
+                        {
+                            "hfov": 110,
+                            "pitch": 10.05961813493795,
+                            "yaw": 128.39392089966393,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        },
+                        {
+                            "hfov": 110,
+                            "pitch": 3.9812879939194676,
+                            "yaw": -91.89256054322145,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        }                          
+                    ]
+                },
+
+                "of2": {
+                    "autoLoad": true,
+                    "title": "Oficina 2",
+                    "hfov": 900,
+                    "pitch": 3.475773155626582,
+                    "yaw": 1.2347982615142974,
+                    "type": "equirectangular",
+                    "panorama": "/images/of2.jpg",
+                    "autoRotate": -10,
+                    "hotSpotDebug": false,
+                    "hotSpots": [
+                        {
+                            "pitch": -2.1,
+                            "yaw": 0.9,
+                            "type": "scene",
+                            "text": "Entrada",
+                            "sceneId": "entrada"
+                        },
+                        {
+                            "pitch": 14.006656151319785,
+                            "yaw": -64.7948786973273,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        },
+                        {
+                            "pitch": 12.947035220693715,
+                            "yaw": -144.83290999490745,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        },
+                        {
+                            "pitch": 13.277115445823057,
+                            "yaw": 98.80455676076535,
+                            "type": "info",
+                            "text": "Información",
+                            "clickHandlerFunc": nodo
+                        }
+                    ]
+                }                
+            }
+        });
+    </script>
+
+</body>
+
+</html>

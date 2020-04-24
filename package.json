@@ -1,0 +1,12 @@
+{
+  "name": "coopfareast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "brw": "browser-sync start --server 'public' --files 'public'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
