@@ -1,6 +1,6 @@
 # tour
-virtual tour with pannellum
+🧭 virtual tour with pannellum
 
-### 🧭 live DEMO
+### live DEMO
 
 https://coopfareast.web.app
